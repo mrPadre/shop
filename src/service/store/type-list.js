@@ -1,0 +1,7 @@
+export const ADD_BASKET = 'ADD_BASKET';
+export const CLEAN_BASKET = 'CLEAN_BASKET';
+export const ADD_RECEIPT = 'ADD_BASKET';
+export const SELECT_ICE = 'SELECT_ICE';
+export const SELECT_WAFFLE = 'SELECT_WAFFLE';
+export const SELECT_SYRUP = 'SELECT_SYRUP';
+export const SELECT_SPRINKLING = 'SELECT_SPRINKLING';
