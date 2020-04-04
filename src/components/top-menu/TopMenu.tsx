@@ -17,15 +17,13 @@ export default class TopMenu extends React.Component <OwnProps, State> {
 
     public render() {
         return(
-            <TopMenuBody>
-                <TopMenuIcon>
-                    <FontAwesomeIcon icon={faBars}/>
-                </TopMenuIcon>
+            <TopMenuBody isMenu={this.props.isMenu}>
                 {NAVI.map((item: any, index: number) => {
                     return (
                         <TopMenuBox key={index}>
                             <TopMenuLink
                                 key={item.title}
+                                onClick={() => this.props.closeMenu()}
                             ><Link to={item.url}>
                                 {item.title}
                             </Link>

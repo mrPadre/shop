@@ -14,7 +14,6 @@ export interface PriceSum{
     sprinklingArr: Array<number>;
 }
 
-
 export interface OwnProps{
     basket: Array<any>;
     receipt: Array<any>;
@@ -24,6 +23,10 @@ export interface OwnProps{
     selectSyrup: Function;
     selectSprinkling: Function;
     iceCream: any;
+    iceArr: Array<Products>;
+    waffleArr: Array<Products>;
+    syrupArr: Array<Products>;
+    sprinklingArr: Array<Products>;
 
 }
 

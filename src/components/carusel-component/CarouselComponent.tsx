@@ -9,6 +9,8 @@ import {
     CarouselItem
 } from "./style";
 import {connect} from "react-redux";
+import {uuid} from "uuidv4";
+import {CURRENCY} from "../../constant";
 
 
 class Carousel extends React.Component<OwnProps, State>{
@@ -18,22 +20,11 @@ class Carousel extends React.Component<OwnProps, State>{
 
         }
     }
-    handleScroll = (e: any) => {
-        let target = e.currentTarget;
-        let position = target.scrollTop;
-        let deti = target.children;
-        let posledniy = target.lastChild;
-        if (position >= target.scrollTopMax) {
-            console.log('все пиздец');
-        } else {
-            console.log(posledniy, position, target, deti);
-        }
-    }
 
     render(){
         const {productList, type, select, iceCream} = this.props;
         return (
-            <CarouselBody onScroll={(event) => this.handleScroll(event)}>
+            <CarouselBody>
                 {productList.map((item: any, index: number) => {
                     let checkItem = false;
                     if (iceCream[type].name === item.name || iceCream.sprinkling.includes(item)){
@@ -41,7 +32,7 @@ class Carousel extends React.Component<OwnProps, State>{
                     }
                     return (
                         <CarouselItem
-                            key={item.index}
+                            key={uuid()}
                             onClick={() => select(item)}
                             selected={checkItem}
                         >
@@ -53,7 +44,7 @@ class Carousel extends React.Component<OwnProps, State>{
                                 {item.name}
                             </CarouselTitle>
                             <CarouselPrice>
-                                {item.price} руб.
+                                {item.price} {CURRENCY.shot}
                             </CarouselPrice>
                             <CarouselLine/>
                         </CarouselItem>

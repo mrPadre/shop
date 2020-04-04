@@ -7,3 +7,28 @@ a{
   text-decoration: none;
   color: black;
 }
+:focus {
+  outline: none;
+}
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {/* */
+  border: none;
+}
+
+.footer {
+  &__text{
+    text-align: center;
+    margin: 10px;
+    font-size: 20px;
+}
+  &__mail{
+    color: white;
+    margin: 10px;
+    font-size: 25px;
+    text-align: center;
+  }
+}

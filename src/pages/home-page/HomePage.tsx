@@ -4,15 +4,10 @@ import {HomeBox, MainImage} from "./style";
 import Col from "../../components/column-component/Col";
 import Carousel from "../../components/carusel-component/CarouselComponent";
 import {
-    ICE_IMAGE,
-    SYRUP_IMAGE,
-    WAFFLE_IMAGE,
-    SPRINKLING_IMAGE,
     MAIN_IMG
 } from "./constant";
 import ShowSelectIce
     from "../../components/show-select-ice-component/ShowSelectIce";
-import {Products} from "../../components/carusel-component/types";
 import {connect} from "react-redux";
 import {
     addBasket, selectIce, selectSprinkling, selectSyrup,
@@ -44,22 +39,22 @@ class HomePage extends React.Component<OwnProps, State>{
 
 
     render() {
-        const { selectIce, selectWaffle, selectSprinkling, selectSyrup } = this.props;
+        const { selectIce, selectWaffle, selectSprinkling, selectSyrup, sprinklingArr, iceArr, waffleArr, syrupArr } = this.props;
 
         return(
             <React.Fragment>
                    <Col width='40vw'>
                        <HomeBox>
-                           <Carousel productList={WAFFLE_IMAGE} type='waffle' select={selectWaffle}/>
+                           <Carousel productList={waffleArr} type='waffle' select={selectWaffle}/>
                        </HomeBox>
                        <HomeBox>
-                           <Carousel productList={ICE_IMAGE} type='ice' select={selectIce}/>
+                           <Carousel productList={iceArr} type='ice' select={selectIce}/>
                        </HomeBox>
                        <HomeBox>
-                           <Carousel productList={SYRUP_IMAGE} type='syrup' select={selectSyrup}/>
+                           <Carousel productList={syrupArr} type='syrup' select={selectSyrup}/>
                        </HomeBox>
                        <HomeBox>
-                           <Carousel productList={SPRINKLING_IMAGE} type='sprinkling' select={selectSprinkling}/>
+                           <Carousel productList={sprinklingArr} type='sprinkling' select={selectSprinkling}/>
                        </HomeBox>
                    </Col>
                 <Col width='20vw'>
@@ -76,7 +71,11 @@ const mapStateToProps = (store: any) => {
     return {
         basket: store.basket,
         receipt: store.receipt,
-        iceCream: store.iceCream
+        iceCream: store.iceCream,
+        iceArr: store.iceArr,
+        waffleArr: store.waffleArr,
+        syrupArr: store.syrupArr,
+        sprinklingArr: store.sprinklingArr
     }
 }
 

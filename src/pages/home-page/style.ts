@@ -18,6 +18,7 @@ export const HomeBox = styled.div`
 `;
 
 export const MainImage = styled.img`
+  width: 100%;
   @media(max-width: 920px){
     display: none;
   }

@@ -1,19 +1,23 @@
 import styled from "styled-components";
 import {COLORS} from "../../constants/colors";
 
-export const TopMenuBody = styled.div`
+interface StyleProps{
+    isMenu: boolean;
+}
+
+export const TopMenuBody = styled.div<StyleProps>`
   display: flex;
   position: relative;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 40vw;
-  @media only screen and (max-width: 900px){
+  @media only screen and (max-width: 920px){
     position: fixed;
     width: 100vw;
-    top: 10px;
-    left: -100vw;
-    height: 100vh;
+    top: 0;
+    left: ${props => props.isMenu? '0': '-100vw'};
+    height: 100%;
     background-color: ${COLORS.BG_MAIN};
     flex-direction: column;
     border-right: 2px solid ${COLORS.FONT_PRIMARY};
@@ -34,13 +38,14 @@ export const TopMenuLink = styled.div`
 export const TopMenuIcon = styled.div`
   display: none;
   font-size: 35px;
-  @media(max-width: 900px){
+  @media(max-width: 920px){
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     right: -35px;
-    top: 0;
+    top: 10px;
+    z-index: 120;
   }
 `;
 
@@ -53,4 +58,7 @@ export const TopMenuBox = styled.div`
   margin: 0 5px;
   transform: skew(-15deg);
   background-color: ${COLORS.BG_BLUE};
+  @media(max-width: 920px){
+    margin: 10px;
+    }
 `;

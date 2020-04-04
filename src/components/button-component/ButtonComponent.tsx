@@ -11,12 +11,22 @@ import {
 import {faStripeS} from "@fortawesome/free-brands-svg-icons";
 
 export default class ButtonComponent extends React.Component <OwnProps, State> {
+
+    showIcon = () => {
+        let {icon} = this.props;
+        if (icon) {
+            return (
+                <FontAwesomeIcon icon={icon || "stripe-s"} />
+            )
+        }
+    }
+
     render() {
         library.add(faSearch, faCartPlus, faPlus, faTrashAlt, faStripeS)
-        const { title, color, icon, size} =this.props;
+        const { title, color, size, action, type, name} = this.props;
         return(
-         <ButtonBody color={color} size={size}>
-                 <FontAwesomeIcon icon={icon || "stripe-s"} />
+         <ButtonBody color={color || 'lite'} size={size} onClick={() => action()} type={type || "button"} name={name || ''}>
+             {this.showIcon()}
                  {title}
          </ButtonBody>
         )

@@ -4,7 +4,6 @@ import {
     faSearch,
     faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIconProps} from "@fortawesome/react-fontawesome";
 
 export const Search = faSearch;
 export const CartPlus = faCartPlus;
@@ -17,6 +16,9 @@ export interface OwnProps{
     color?: "lite" | "dark" | "blue" | "red";
     title: string;
     icon?: "search" | "cart-plus" | "plus" | "trash-alt";
+    action: Function;
+    type?: "button" | "submit";
+    name?: string;
 }
 export interface State{
 

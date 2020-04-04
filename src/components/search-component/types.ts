@@ -1,6 +1,6 @@
 export interface OwnProps{
-
+    changeValue: Function;
 }
 export interface State{
-    value: string;
+    isSearch: boolean;
 }

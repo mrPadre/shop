@@ -1,67 +1,68 @@
 import React from 'react';
-import {OwnProps, State} from "./types";
-import {BasketBody, BasketImage} from "./style";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {connect} from "react-redux";
+
+import {OwnProps, State} from "./types";
+import IceImage from '../../img/main4.png';
+
+import {BasketBody, BasketImage, BasketNumber, BasketText} from "./style";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faShoppingBasket} from "@fortawesome/free-solid-svg-icons";
+import ButtonComponent from "../button-component/ButtonComponent";
+import {BASKET_TEXT} from "./constant";
+import {Link} from "react-router-dom";
+import {URL_BASKET} from "../../service/router/url";
+import {CURRENCY} from "../../constant";
+import {changeSellShow} from "../../service/store/actions";
+
+
+
+
 
 
 class BasketComponent extends React.Component <OwnProps, State> {
 
+    public handleButtonAction = () => {
+        this.props.changeSellShow();
+    }
+
     render() {
-        const {iceCream} = this.props;
+        const {iceCream, totalPrice, basket} = this.props;
+        let count = basket.length;
+
+        if (basket.length >= 1) {
         return(
-         <React.Fragment>
-             <BasketBody>
-                 {Object.keys(iceCream).map((item: any, index: number) => {
-                     switch (item){
-                         case 'waffle':
-                         case 'ice':
-                         case 'syrup': {
-                  if (iceCream[item].image) {
-                      return (
-         <React.Fragment>
-             <BasketImage src={iceCream[item].image} alt={iceCream[item].name}/>
-             <FontAwesomeIcon icon={faPlus}/>
-          </React.Fragment>
-                      )
-                  } else return;
-                         }
-                         case 'sprinkling': {
-                             if (iceCream.sprinkling.length >= 1)
-                             return (
-    iceCream.sprinkling.map((sweet: any, index: number) => {
-        return (
-            <React.Fragment key={index}>
-                <BasketImage
-                    src={sweet.image}
-                    alt={sweet.name}
-                />
-                <FontAwesomeIcon icon={faPlus}/>
-            </React.Fragment>
-
-                )
-
-
-                                 })
-                             )
-                         }
-                     }
-                 })}
-
-             </BasketBody>
-         </React.Fragment>
+         <BasketBody>
+             <BasketImage>
+                 <Link to={URL_BASKET}>
+                     <FontAwesomeIcon icon={faShoppingBasket}/>
+                 </Link>
+                 <BasketNumber>
+                     {count}
+                 </BasketNumber>
+             </BasketImage>
+             <BasketText>
+                 {totalPrice.reduce((a:number,b: number)=> a + b)} {CURRENCY.long}
+             </BasketText>
+             <ButtonComponent title={BASKET_TEXT.button} action={this.handleButtonAction} size="150px"/>
+         </BasketBody>
         )
+    } else {
+            return(
+                <React.Fragment/>
+            )
+        }
     }
 }
 const mapStateToProps = (store: any) => {
     return {
-        iceCream: store.iceCream
+        iceCream: store.iceCream,
+        totalPrice: store.totalPrice,
+        basket: store.basket
     }
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-
+        changeSellShow: () => dispatch (changeSellShow())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (BasketComponent)
